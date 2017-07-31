@@ -6,13 +6,13 @@ projects: [spring-data-jpa]
 :icons: font
 :source-highlighter: prettify
 :project_id: gs-accessing-data-jpa
-This guide walks you through the process of building an application that uses Spring Data JPA to store and retrieve data in a relational database.
+本指南会通过带你了解使用Spring Data JPA存储在关系数据库中检索数据的应用程序的过程。
 
-== What you'll build
+== 你将做出什么
 
-You'll build an application that stores `Customer` link:/understanding/POJO[POJOs] in a memory-based database.
+你将构建一个应用，它会保存 `Customer` link:/understanding/POJO[POJOs] (简单Java对象)到内存数据库中。
 
-== What you'll need
+== 你需要什么
 
 :java_version: 1.8
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
@@ -28,9 +28,9 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 
 
 [[initial]]
-== Define a simple entity
+== 定义一个简单实体
 
-In this example, you store Customer objects, annotated as a JPA entity.
+在这个例子中，你需要保存一个被标记为JPA实体的Customer对象。
 
 `src/main/java/hello/Customer.java`
 [source,java,indent=0]
@@ -39,22 +39,22 @@ include::complete/src/main/java/hello/Customer.java[tag=sample]
 }
 ----
 
-Here you have a `Customer` class with three attributes, the `id`, the `firstName`, and the `lastName`. You also have two constructors. The default constructor only exists for the sake of JPA. You won't use it directly, so it is designated as `protected`. The other constructor is the one you'll use to create instances of `Customer` to be saved to the database.
+这样你就有了一个带有 `id` 、`firstName`、`lastName`三个属性的 `Customer` 类。另外还有两个构造器。默认的（第一个）构造函数只为了提供给JPA使用，你不会直接用到它，所以他被声明为protected。另一个构造器就是你用来创建Customer实例并存入数据库的。
 
-NOTE: In this guide, the typical getters and setters have been left out for brevity.
+NOTE: 在本指南中，getter和setter都因篇幅限制而省略
 
-The `Customer` class is annotated with `@Entity`, indicating that it is a JPA entity. For lack of a `@Table` annotation, it is assumed that this entity will be mapped to a table named `Customer`.
+`Customer` 类被标注了 `@Entity` 注解来声明这是个JPA实体。因为缺少一个显式的@ `@Table` 注解，根据约定这个实体会被映射到名为 `Customer` 的表中。
 
-The `Customer`’s `id` property is annotated with `@Id` so that JPA will recognize it as the object's ID. The `id` property is also annotated with `@GeneratedValue` to indicate that the ID should be generated automatically.
+`Customer` 类的id属性被标注了 `@Id` 注解，这样JPA会知道这是对象的ID。 `id` 属性同样被标注了 `@GeneratedValue` 注解来向JPA声明这个对象的ID应该被自动生成。
 
-The other two properties, `firstName` and `lastName` are left unannotated. It is assumed that they'll be mapped to columns that share the same name as the properties themselves.
+另外两个属性 `firstName` 和 `lastName` 没被标注。根据约定这两个属性将被映射为Customer表和他们同名的的列。
 
-The convenient `toString()` method will print out the customer's properties.
+最后， `toString()` 方法提供了一个很方便的方式将Customer的属性打印出来。
 
-== Create simple queries
-Spring Data JPA focuses on using JPA to store data in a relational database. Its most compelling feature is the ability to create repository implementations automatically, at runtime, from a repository interface.
+== 创建一个简单的查询
+Spring Data JPA聚焦在使用JPA保存数据到关系数据库。它最引人瞩目的特点是具有在运行时通过repository api自动创建repository的实现的能力。
 
-To see how this works, create a repository interface that works with `Customer` entities:
+为了看到它们如何工作，我们来创建一个与 `Customer` 实体一起工作的repository:
 
 `src/main/java/hello/CustomerRepository.java`
 [source,java]
@@ -62,16 +62,16 @@ To see how this works, create a repository interface that works with `Customer` 
 include::complete/src/main/java/hello/CustomerRepository.java[]
 ----
     
-`CustomerRepository` extends the `CrudRepository` interface. The type of entity and ID that it works with,`Customer` and `Long`, are specified in the generic parameters on `CrudRepository`. By extending `CrudRepository`, `CustomerRepository` inherits several methods for working with `Customer` persistence, including methods for saving, deleting, and finding `Customer` entities.
+`CustomerRepository` 扩展了 `CrudRepository` 。 `Customer` 和 `Long` 作为实体和id的传递给了 `CrudRepository` 。通过扩展 `CrudRepository` ， `CustomerRepository`继承了多个方法来完成 `Customer` 的持久化工作，其中包括保存、删除和寻找 `Customer` 实体。
 
-Spring Data JPA also allows you to define other query methods by simply declaring their method signature. In the case of `CustomerRepository`, this is shown with a `findByLastName()` method.
+Spring Data JPA 还可以通过简单地声明他们的方法签名定义其他的查询方法。就像在这个`CustomerRepository` 中的 `findByLastName()` 方法一样。
 
-In a typical Java application, you'd expect to write a class that implements `CustomerRepository`. But that's what makes Spring Data JPA so powerful: You don't have to write an implementation of the repository interface. Spring Data JPA creates an implementation on the fly when you run the application.
+在一个典型Java应用程序中，你会需要写一个 `CustomerRepository` 类的实现。但这也是Spring Data JPA 的强大之处：现在你不需要再根据这个repository接口写一个CustomerRepository类的实现了。Spring Data JPA在会运行程序时为你做这些事。
 
-Let's wire this up and see what it looks like!
+让我们把他们连接起来看看怎么样!
 
-== Create an Application class
-Here you create an Application class with all the components.
+== 创建Application类
+现在你要创建一个Application类，带上其他所有的组件。
 
 `src/main/java/hello/Application.java`
 [source,java]
@@ -81,16 +81,16 @@ include::complete/src/main/java/hello/Application.java[]
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-application.adoc[]
 
-`Application` includes a `main()` method that puts the `CustomerRepository` through a few tests. First, it fetches the `CustomerRepository` from the Spring application context. Then it saves a handful of `Customer` objects, demonstrating the `save()` method and setting up some data to work with. Next, it calls `findAll()` to fetch all `Customer` objects from the database. Then it calls `findOne()` to fetch a single `Customer` by its ID. Finally, it calls `findByLastName()` to find all customers whose last name is "Bauer".
+`Application` 类包括了一个 `main()` 函数，并加入了一些测试数据到 `CustomerRepository` 中。首先它从应用上下文中获取到 `CustomerRepository` ，然后它通过展示 `save()` 方法，创建了一些测试数据，来保存了几个 `Customer` 对象。然后调用 `findAll()` 来从数据库中获得所有的Customer对象。接着调用 `findOne()` 来通过ID获取一个单独的 `Customer` 对象。最后，它调用 `findByLastName()` 方法找到了所有lastName 为 "Bauer" 的Customer对象。
 
-NOTE: By default, Spring Boot will enable JPA repository support and look in the package (and its subpackages) where `@SpringBootApplication` is located. If your configuration has JPA repository interface definitions located in a package not visible, you can point out alternate packages using `@EnableJpaRepositories` and its type-safe `basePackageClasses=MyRepository.class` parameter. 
+NOTE: 默认情况下，Spring Boot会启用JPA repository支持，并扫描package（和他的下级package）来确认 `@SpringBootApplication` 的位置。如果你在一些不可见的package中配置有JPA repository 接口的定义，你可以用@EnableJpaRepositories注解，和他的类型安全的参数.
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_mainhead.adoc[]
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_with_both.adoc[]
     
     
-You should see something like this:
+你将会看到这样的输出：
 ....
 == Customers found with findAll():
 Customer[id=1, firstName='Jack', lastName='Bauer']
@@ -108,9 +108,9 @@ Customer[id=3, firstName='Kim', lastName='Bauer']
 ....
 
 == Summary
-Congratulations! You've written a simple application that uses Spring Data JPA to save objects to a database and to fetch them -- all without writing a concrete repository implementation.
+恭喜，你已经写出了一个简单的使用Spring Data JPA来保存、取出对象的应用——关于repository的实现，一点代码也没有。
 
-NOTE: If you're interesting in exposing JPA repositories with a hypermedia-based RESTful front end with little effort, you might want to read link:/guides/gs/accessing-data-rest[Accessing JPA Data with REST].
+NOTE: 如果你对暴露JPA在超媒体的RESTful前段下感兴趣，你可能会想阅读 link:/guides/gs/accessing-data-rest[用REST访问JPA数据].
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
 
