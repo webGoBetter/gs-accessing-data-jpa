@@ -15,16 +15,16 @@ projects: [spring-data-jpa]
 == 你需要什么
 
 :java_version: 1.8
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/how_to_complete_this_guide.adoc[]
 
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-gradle.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/hide-show-gradle.adoc[]
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-maven.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/hide-show-maven.adoc[]
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/hide-show-sts.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/hide-show-sts.adoc[]
 
 
 [[initial]]
@@ -79,15 +79,15 @@ Spring Data JPA 还可以通过简单地声明他们的方法签名定义其他�
 include::complete/src/main/java/hello/Application.java[]
 ----
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/spring-boot-application.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/spring-boot-application.adoc[]
 
 `Application` 类包括了一个 `main()` 函数，并加入了一些测试数据到 `CustomerRepository` 中。首先它从应用上下文中获取到 `CustomerRepository` ，然后它通过展示 `save()` 方法，创建了一些测试数据，来保存了几个 `Customer` 对象。然后调用 `findAll()` 来从数据库中获得所有的Customer对象。接着调用 `findOne()` 来通过ID获取一个单独的 `Customer` 对象。最后，它调用 `findByLastName()` 方法找到了所有lastName 为 "Bauer" 的Customer对象。
 
 NOTE: 默认情况下，Spring Boot会启用JPA repository支持，并扫描package（和他的下级package）来确认 `@SpringBootApplication` 的位置。如果你在一些不可见的package中配置有JPA repository 接口的定义，你可以用@EnableJpaRepositories注解，和他的类型安全的参数.
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_mainhead.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/build_an_executable_jar_mainhead.adoc[]
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/build_an_executable_jar_with_both.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/build_an_executable_jar_with_both.adoc[]
     
     
 你将会看到这样的输出：
@@ -112,5 +112,5 @@ Customer[id=3, firstName='Kim', lastName='Bauer']
 
 NOTE: 如果你对暴露JPA在超媒体的RESTful前段下感兴趣，你可能会想阅读 link:/guides/gs/accessing-data-rest[用REST访问JPA数据].
 
-include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
+include::https://raw.githubusercontent.com/webGoBetter/getting-started-macros/master/footer.adoc[]
 
