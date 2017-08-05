@@ -6,7 +6,7 @@ projects: [spring-data-jpa]
 :icons: font
 :source-highlighter: prettify
 :project_id: gs-accessing-data-jpa
-本指南会通过带你了解使用Spring Data JPA存储在关系数据库中检索数据的应用程序的过程。
+本指南会通过带你一步一步创建一个应用程序，这个应用程序使用Spring Data JPA在关系数据库中存储和检索数据。
 
 == 你将做出什么
 
