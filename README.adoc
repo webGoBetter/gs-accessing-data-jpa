@@ -107,7 +107,7 @@ Customer[id=1, firstName='Jack', lastName='Bauer']
 Customer[id=3, firstName='Kim', lastName='Bauer']
 ....
 
-== Summary
+== 总结
 恭喜，你已经写出了一个简单的使用Spring Data JPA来保存、取出对象的应用——关于repository的实现，一点代码也没有。
 
 NOTE: 如果你对暴露JPA在超媒体的RESTful前段下感兴趣，你可能会想阅读 link:/guides/gs/accessing-data-rest[用REST访问JPA数据].
